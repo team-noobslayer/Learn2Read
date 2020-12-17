@@ -1,3 +1,4 @@
+import React from "react";
 import {
   createAppContainer,
   // createSwitchNavigator
@@ -7,9 +8,19 @@ import { createStackNavigator } from "react-navigation-stack";
 
 import HomeScreen from "./src/screens/HomeScreen";
 
+import { Provider as QuizProvider } from "./src/context/quizContext";
+
 const navigator = createStackNavigator(
   { Home: HomeScreen },
   { initialRouteName: "Home" }
 );
 
-export default createAppContainer(navigator);
+const App = createAppContainer(navigator);
+
+export default () => {
+  return (
+    <QuizProvider>
+      <App />
+    </QuizProvider>
+  );
+};
