@@ -17,7 +17,7 @@
 //  )
 //
 
-
+import axios from 'axios';
 import * as SQLite from "expo-sqlite";
 const db = SQLite.openDatabase("db.sqlite");
 
@@ -46,3 +46,15 @@ export const writeQuestion = ({ id, question, answers, correctAnswer }) => {
     );
   });
 };
+
+export const populateDbFromJson = async (uri) => {
+  try {
+    const data = await axios.get(uri).data;
+    const questions = JSON.parse(data);
+    for (let question of questions) {
+      writeQuestion(question);
+    }
+  } catch (err) {
+    console.error("populateDbFromJson error" + err);
+  }
+}
