@@ -1,7 +1,7 @@
 // Quiz context
-// state = {id (Number), submitted (Bool), questions (Array<question>), responses (Array<response>) }
+// state = { submitted (Bool), questions (Array<question>), responses (Array<response>) }
 // question = { id (Number), question (String), answers (Array<String>), correctAnswer (String) }
-// response = { id (Number), response (String), correct (Bool) }
+// response = { question_id (Number), response (String), correct (Bool) }
 
 import createDataContext from "./createDataContext";
 
