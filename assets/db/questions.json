@@ -16,7 +16,7 @@
         "question": "What color is Benny The Beaver's Jersey?",
         "answers": ["red", "blue", "pink"],
         "correctAnswer": "black",
-        "image": "./question_3.png"
+        "image": "../images/question_3.png"
     },
     {
         "id": 4,
@@ -29,6 +29,6 @@
         "question": "What color is the fire truck?",
         "answers": ["black", "blue", "yellow"],
         "correctanswer": "red",
-        "image": "./question_5.png"
+        "image": "../images/question_5.png"
     }
 ]
