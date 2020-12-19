@@ -33,6 +33,22 @@ export const fetchQuestions = (numQuestions = 10, callback) => {
   });
 };
 
+export const fetchResponses = (callback) => {
+  db.transaction((tx) => {
+    tx.executeSql(
+      "SELECT * FROM Responses;",
+      [],
+      (_, resultSet) => {
+        callback(resultSet._array);
+      },
+      (err) => {
+        console.error("getResponses error\n", err);
+        callback(err);
+      }
+    );
+  });
+};
+
 export const writeQuestion = ({ id, question, answers, correctAnswer }) => {
   db.transaction((tx) => {
     tx.executeSql(
