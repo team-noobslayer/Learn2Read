@@ -27,7 +27,17 @@ export const fetchQuestions = (numQuestions = 10, callback) => {
     tx.executeSql(
       `SELECT * FROM Questions LIMIT ?;`,
       [numQuestions],
-      (_, resultSet) => callback(resultSet.rows._array),
+      (_, resultSet) =>
+        callback(
+          resultSet.rows._array.map((question) => {
+            return {
+              id: question.QuestionID,
+              question: question.Question,
+              answers: [question.Answer1, question.Answer2, question.Answer3],
+              correctAnswer: question.CorrectAnswer,
+            };
+          })
+        ),
       (err) => console.error(err)
     );
   });
