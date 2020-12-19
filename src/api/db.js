@@ -27,7 +27,17 @@ export const fetchQuestions = (numQuestions = 10, callback) => {
     tx.executeSql(
       `SELECT * FROM Questions LIMIT ?;`,
       [numQuestions],
-      (_, resultSet) => callback(resultSet.rows._array),
+      (_, resultSet) =>
+        callback(
+          resultSet.rows._array.map((question) => {
+            return {
+              id: question.QuestionID,
+              question: question.Question,
+              answers: [question.Answer1, question.Answer2, question.Answer3],
+              correctAnswer: question.CorrectAnswer,
+            };
+          })
+        ),
       (err) => console.error(err)
     );
   });
@@ -39,7 +49,7 @@ export const fetchResponses = (callback) => {
       "SELECT * FROM Responses;",
       [],
       (_, resultSet) => {
-        callback(resultSet._array);
+        callback(resultSet.rows._array);
       },
       (err) => {
         console.error("getResponses error\n", err);
@@ -49,31 +59,39 @@ export const fetchResponses = (callback) => {
   });
 };
 
-export const writeQuestion = ({ id, question, answers, correctAnswer }) => {
+export const writeQuestion = (
+  { id, question, answers, correctAnswer },
+  callback = null
+) => {
   db.transaction((tx) => {
     tx.executeSql(
       "INSERT INTO Questions VALUES (?, ?, ?, ?, ?, ?);",
       [id, question, ...answers, correctAnswer],
       (_, resultSet) => {
-        console.log(resultSet);
+        if (callback) callback(resultSet);
       },
       (err) => {
         console.error("writeQuestion error\n", err);
+        if (callback) callback(err);
       }
     );
   });
 };
 
-export const writeResponse = ({ questionId, response, correct }) => {
+export const writeResponse = (
+  { questionId, response, correct },
+  callback = null
+) => {
   db.transaction((tx) => {
     tx.executeSql(
       "INSERT INTO Responses VALUES (?, ?, ?, ?);",
       [questionId, response, correct, Date.now()],
       (_, resultSet) => {
-        console.log(resultSet);
+        if (callback) callback(resultSet);
       },
       (err) => {
         console.error("writeResponse error\n", err);
+        if (callback) callback(err);
       }
     );
   });
@@ -88,7 +106,7 @@ export const createTables = () => {
         Answer1 TEXT,
         Answer2 TEXT,
         Answer3 TEXT,
-        CorrectAnswer TEXT,
+        CorrectAnswer TEXT
       );`,
       [],
       () => {},
@@ -101,7 +119,7 @@ export const createTables = () => {
         QuestionID INT,
         Response TEXT,
         Correct INT,
-        Timestamp INT
+        Timestamp INT,
         FOREIGN KEY(QuestionID) REFERENCES Questions(QuestionID)
       );`,
       [],
@@ -113,10 +131,33 @@ export const createTables = () => {
   });
 };
 
+export const dropTables = () => {
+  db.transaction((tx) => {
+    tx.executeSql(
+      "DROP TABLE IF EXISTS Questions;",
+      [],
+      () => {},
+      (err) => {
+        console.error("dropTables Questions error\n", err);
+      }
+    );
+  });
+  db.transaction((tx) => {
+    tx.executeSql(
+      "DROP TABLE IF EXISTS Responses;",
+      [],
+      () => {},
+      (err) => {
+        console.error("dropTables Responses error\n", err);
+      }
+    );
+  });
+};
+
 export const writeQuestionsFromJson = async (uri) => {
   try {
-    const data = await axios.get(uri).data;
-    const questions = JSON.parse(data);
+    const response = await axios.get(uri);
+    const questions = response.data;
     for (let question of questions) {
       writeQuestion(question);
     }
