@@ -79,6 +79,40 @@ export const writeResponse = ({ questionId, response, correct }) => {
   });
 };
 
+export const createTables = () => {
+  db.transaction((tx) => {
+    tx.executeSql(
+      `CREATE TABLE IF NOT EXISTS Questions (
+        QuestionID INT PRIMARY KEY NOT NULL,
+        Question TEXT,
+        Answer1 TEXT,
+        Answer2 TEXT,
+        Answer3 TEXT,
+        CorrectAnswer TEXT,
+      );`,
+      [],
+      () => {},
+      (err) => {
+        console.error("createTables Questions error\n", err);
+      }
+    );
+    tx.executeSql(
+      `CREATE TABLE IF NOT EXISTS Responses (
+        QuestionID INT,
+        Response TEXT,
+        Correct INT,
+        Timestamp INT
+        FOREIGN KEY(QuestionID) REFERENCES Questions(QuestionID)
+      );`,
+      [],
+      () => {},
+      (err) => {
+        console.error("createTables Responses error\n", err);
+      }
+    );
+  });
+};
+
 export const writeQuestionsFromJson = async (uri) => {
   try {
     const data = await axios.get(uri).data;
