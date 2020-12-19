@@ -1,31 +1,51 @@
 import React from "react";
-import { Button } from "react-native";
-import { View, StyleSheet } from "react-native";
-import { Text } from "react-native-elements";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 const HomeScreen = ({ navigation }) => {
   return (
     <View>
-      <Text style={styles.text}>Home</Text>
-      <Button
-        onPress={() => navigation.navigate('Profile')}
-        title='Select Current Profile'
-      />
-      <Button
-        onPress={() => navigation.navigate('Record')}
-        title='See Current Records'
-      />
-      <Button
+      <Text style={styles.text}>Welcome to Learn2Read</Text>
+      <Text style={styles.smaller_text}>Please pick one of the following options below</Text>
+      <TouchableOpacity
+        style={styles.button}
         onPress={() => navigation.navigate('Quiz')}
-        title='Start a Quiz'
-      />
+      ><Text>Start a Quiz</Text>
+      </TouchableOpacity>
+      <View style={styles.space} />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate('Record')}
+      >
+        <Text>Check Current Records</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 30
+    fontSize: 30,
+    backgroundColor: 'orange',
+    alignSelf: 'center',
+    marginBottom: 20
+  },
+  smaller_text: {
+    fontSize: 20,
+    backgroundColor: 'orange',
+    alignSelf: 'center',
+    marginBottom: 20
+  },
+  space: {
+    width: 20,
+    height: 20
+  },
+  button: {
+    marginBottom: 20,
+    padding: 20,
+    backgroundColor: 'orange',
+    alignSelf: 'center',
+    alignItems: 'center',
+    width: '60%'
   }
 });
 
