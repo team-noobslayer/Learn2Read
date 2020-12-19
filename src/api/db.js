@@ -22,7 +22,7 @@ import axios from "axios";
 import * as SQLite from "expo-sqlite";
 const db = SQLite.openDatabase("db.sqlite");
 
-export const fetchQuestionsFromDb = (numQuestions, callback) => {
+export const fetchQuestions = (numQuestions = 10, callback) => {
   db.transaction((tx) => {
     tx.executeSql(
       `SELECT * FROM Questions LIMIT ?;`,
