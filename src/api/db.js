@@ -13,6 +13,7 @@
 //   QuestionID INT,
 //   Response TEXT,
 //   Correct INT,
+//   Timestamp INT
 //   FOREIGN KEY(QuestionID) REFERENCES Questions(QuestionID)
 //  )
 //
@@ -50,8 +51,8 @@ export const writeQuestion = ({ id, question, answers, correctAnswer }) => {
 export const writeResponse = ({ questionId, response, correct }) => {
   db.transaction((tx) => {
     tx.executeSql(
-      "INSERT INTO Responses VALUES (?, ?, ?);",
-      [questionId, response, correct],
+      "INSERT INTO Responses VALUES (?, ?, ?, ?);",
+      [questionId, response, correct, Date.now()],
       (_, resultSet) => {
         console.log(resultSet);
       },
