@@ -88,7 +88,7 @@ export const createTables = () => {
         Answer1 TEXT,
         Answer2 TEXT,
         Answer3 TEXT,
-        CorrectAnswer TEXT,
+        CorrectAnswer TEXT
       );`,
       [],
       () => {},
@@ -101,7 +101,7 @@ export const createTables = () => {
         QuestionID INT,
         Response TEXT,
         Correct INT,
-        Timestamp INT
+        Timestamp INT,
         FOREIGN KEY(QuestionID) REFERENCES Questions(QuestionID)
       );`,
       [],
