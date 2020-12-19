@@ -49,7 +49,7 @@ export const fetchResponses = (callback) => {
       "SELECT * FROM Responses;",
       [],
       (_, resultSet) => {
-        callback(resultSet._array);
+        callback(resultSet.rows._array);
       },
       (err) => {
         console.error("getResponses error\n", err);
