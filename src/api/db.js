@@ -55,6 +55,6 @@ export const populateDbFromJson = async (uri) => {
       writeQuestion(question);
     }
   } catch (err) {
-    console.error("populateDbFromJson error" + err);
+    console.error("populateDbFromJson error\n" + err);
   }
 }

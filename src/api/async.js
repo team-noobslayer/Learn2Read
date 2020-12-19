@@ -18,7 +18,7 @@ export const saveDbPopulated = async (value) => {
   try {
     await AsyncStorage.setItem("@db_populated", boolToString(value));
   } catch (err) {
-    console.error("saveDbPopulated error" + e);
+    console.error("saveDbPopulated error\n" + e);
   }
 };
 
@@ -30,6 +30,6 @@ export const readDbPopulated = async (callback = null) => {
     }
     return stringToBool(dbPopulated);
   } catch (err) {
-    console.log("readDbPopulated error" + err);
+    console.log("readDbPopulated error\n" + err);
   }
 };
