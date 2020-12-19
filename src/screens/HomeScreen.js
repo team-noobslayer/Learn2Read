@@ -4,7 +4,7 @@ import { View, StyleSheet } from "react-native";
 import { Text } from "react-native-elements";
 
 import { readDbPopulated, saveDbPopulated } from "../api/async.js";
-import { populateDbFromJson } from "../api/db.js";
+import { writeQuestionsFromJson } from "../api/db.js";
 
 const questionsUri =
   "https://raw.githubusercontent.com/team-noobslayer/Learn2Read/master/assets/db/questions.json";
@@ -12,7 +12,7 @@ const questionsUri =
 const loadDbIfFirstBoot = async (json_uri) => {
   const dbPopulated = await readDbPopulated();
   if (dbPopulated) return;
-  populateDbFromJson(json_uri);
+  writeQuestionsFromJson(json_uri);
   await saveDbPopulated(true);
 };
 

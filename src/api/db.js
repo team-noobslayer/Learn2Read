@@ -79,7 +79,7 @@ export const writeResponse = ({ questionId, response, correct }) => {
   });
 };
 
-export const populateDbFromJson = async (uri) => {
+export const writeQuestionsFromJson = async (uri) => {
   try {
     const data = await axios.get(uri).data;
     const questions = JSON.parse(data);
@@ -87,6 +87,6 @@ export const populateDbFromJson = async (uri) => {
       writeQuestion(question);
     }
   } catch (err) {
-    console.error("populateDbFromJson error\n" + err);
+    console.error("writeQuestionsFromJson error\n" + err);
   }
 };
