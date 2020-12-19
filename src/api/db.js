@@ -17,7 +17,7 @@
 //  )
 //
 
-import axios from 'axios';
+import axios from "axios";
 import * as SQLite from "expo-sqlite";
 const db = SQLite.openDatabase("db.sqlite");
 
@@ -57,4 +57,4 @@ export const populateDbFromJson = async (uri) => {
   } catch (err) {
     console.error("populateDbFromJson error\n" + err);
   }
-}
+};
