@@ -22,13 +22,13 @@
         "id": 4,
         "question": "What is the last letter of the alphabet?",
         "answers": ["H", "W", "K"],
-        "correctanswer": "Z"
+        "correctAnswer": "Z"
     },
     {
         "id": 5,
         "question": "What color is the fire truck?",
         "answers": ["black", "blue", "yellow"],
-        "correctanswer": "red",
+        "correctAnswer": "red",
         "image": "../images/question_5.png"
     }
 ]
