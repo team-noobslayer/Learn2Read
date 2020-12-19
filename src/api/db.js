@@ -133,8 +133,8 @@ export const createTables = () => {
 
 export const writeQuestionsFromJson = async (uri) => {
   try {
-    const data = await axios.get(uri).data;
-    const questions = JSON.parse(data);
+    const response = await axios.get(uri);
+    const questions = response.data;
     for (let question of questions) {
       writeQuestion(question);
     }
