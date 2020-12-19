@@ -35,13 +35,18 @@ export const fetchQuestionsFromDb = (numQuestions, callback) => {
 export const writeQuestion = ({ id, question, answers, correctAnswer }) => {
   db.transaction((tx) => {
     tx.executeSql(
-      `INSERT INTO Questions VALUES (?, ?, ?, ?, ?, ?);`,
+      "INSERT INTO Questions VALUES (?, ?, ?, ?, ?, ?);",
       [id, question, ...answers, correctAnswer],
       (_, resultSet) => {
         console.log(resultSet);
       },
       (err) => {
-        console.error(err);
+        console.error("writeQuestion error\n", err);
+      }
+    );
+  });
+};
+
       }
     );
   });
