@@ -131,6 +131,29 @@ export const createTables = () => {
   });
 };
 
+export const dropTables = () => {
+  db.transaction((tx) => {
+    tx.executeSql(
+      "DROP TABLE IF EXISTS Questions;",
+      [],
+      () => {},
+      (err) => {
+        console.error("dropTables Questions error\n", err);
+      }
+    );
+  });
+  db.transaction((tx) => {
+    tx.executeSql(
+      "DROP TABLE IF EXISTS Responses;",
+      [],
+      () => {},
+      (err) => {
+        console.error("dropTables Responses error\n", err);
+      }
+    );
+  });
+};
+
 export const writeQuestionsFromJson = async (uri) => {
   try {
     const response = await axios.get(uri);
