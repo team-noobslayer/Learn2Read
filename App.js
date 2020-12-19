@@ -1,3 +1,4 @@
+import React from "react";
 import {
   createAppContainer,
   // createSwitchNavigator
@@ -9,6 +10,8 @@ import HomeScreen from "./src/screens/HomeScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import RecordScreen from "./src/screens/RecordScreen";
 import QuizScreen from "./src/screens/QuizScreen";
+
+import { Provider as QuizProvider } from "./src/context/quizContext";
 
 const navigator = createStackNavigator(
   {
@@ -25,4 +28,12 @@ const navigator = createStackNavigator(
   }
 );
 
-export default createAppContainer(navigator);
+const App = createAppContainer(navigator);
+
+export default () => {
+  return (
+    <QuizProvider>
+      <App />
+    </QuizProvider>
+  );
+};
