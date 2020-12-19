@@ -59,31 +59,39 @@ export const fetchResponses = (callback) => {
   });
 };
 
-export const writeQuestion = ({ id, question, answers, correctAnswer }) => {
+export const writeQuestion = (
+  { id, question, answers, correctAnswer },
+  callback = null
+) => {
   db.transaction((tx) => {
     tx.executeSql(
       "INSERT INTO Questions VALUES (?, ?, ?, ?, ?, ?);",
       [id, question, ...answers, correctAnswer],
       (_, resultSet) => {
-        console.log(resultSet);
+        if (callback) callback(resultSet);
       },
       (err) => {
         console.error("writeQuestion error\n", err);
+        if (callback) callback(err);
       }
     );
   });
 };
 
-export const writeResponse = ({ questionId, response, correct }) => {
+export const writeResponse = (
+  { questionId, response, correct },
+  callback = null
+) => {
   db.transaction((tx) => {
     tx.executeSql(
       "INSERT INTO Responses VALUES (?, ?, ?, ?);",
       [questionId, response, correct, Date.now()],
       (_, resultSet) => {
-        console.log(resultSet);
+        if (callback) callback(resultSet);
       },
       (err) => {
         console.error("writeResponse error\n", err);
+        if (callback) callback(err);
       }
     );
   });
