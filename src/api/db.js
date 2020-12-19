@@ -10,7 +10,7 @@
 //
 // Responses table
 // (
-//   QuestionID INT, 
+//   QuestionID INT,
 //   Response TEXT,
 //   Correct INT,
 //   FOREIGN KEY(QuestionID) REFERENCES Questions(QuestionID)
@@ -47,6 +47,16 @@ export const writeQuestion = ({ id, question, answers, correctAnswer }) => {
   });
 };
 
+export const writeResponse = ({ questionId, response, correct }) => {
+  db.transaction((tx) => {
+    tx.executeSql(
+      "INSERT INTO Responses VALUES (?, ?, ?);",
+      [questionId, response, correct],
+      (_, resultSet) => {
+        console.log(resultSet);
+      },
+      (err) => {
+        console.error("writeResponse error\n", err);
       }
     );
   });
