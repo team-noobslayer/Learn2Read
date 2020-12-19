@@ -2,32 +2,32 @@
     {
         "id": 1,
         "question": "What color is an orange?",
-        "answers": ["blue","orange","red","yellow"],
+        "answers": ["blue","red","yellow"],
         "correctAnswer": "orange"
     },
     {
         "id": 2,
         "question": "What is the first letter of the alphabet?",
-        "answers": ["A", "D", "F", "H"],
+        "answers": ["D", "F", "H"],
         "correctAnswer": "A"
     },
     {
         "id": 3,
         "question": "What color is Benny The Beaver's Jersey?",
-        "answers": ["red", "blue", "pink", "black"],
+        "answers": ["red", "blue", "pink"],
         "correctAnswer": "black",
         "image": "./question_3.png"
     },
     {
         "id": 4,
         "question": "What is the last letter of the alphabet?",
-        "answers": ["H", "W", "Z", "K"],
+        "answers": ["H", "W", "K"],
         "correctanswer": "Z"
     },
     {
         "id": 5,
         "question": "What color is the fire truck?",
-        "answers": ["red", "black", "blue", "yellow"],
+        "answers": ["black", "blue", "yellow"],
         "correctanswer": "red",
         "image": "./question_5.png"
     }
