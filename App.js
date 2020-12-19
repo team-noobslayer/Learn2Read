@@ -1,11 +1,11 @@
 import {
   createAppContainer
   // createSwitchNavigator
-} from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
+} from "react-navigation"
+import { createStackNavigator } from "react-navigation-stack"
 // import {createTabNavigator} from 'react-navigation-tabs';
 
-import HomeScreen from "./src/screens/HomeScreen";
+import HomeScreen from "./src/screens/HomeScreen"
 import RecordScreen from './src/screens/RecordScreen'
 import QuizScreen from './src/screens/QuizScreen'
 
