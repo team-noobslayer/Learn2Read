@@ -8,16 +8,16 @@ const HomeScreen = ({ navigation }) => {
     <View>
       <Text style={styles.text}>Home</Text>
       <Button
-        onPress={() => navigation.navigate('Profile')}
-        title='Select Current Profile'
+        onPress={() => navigation.navigate("Profile")}
+        title="Select Current Profile"
       />
       <Button
-        onPress={() => navigation.navigate('Record')}
-        title='See Current Records'
+        onPress={() => navigation.navigate("Record")}
+        title="See Current Records"
       />
       <Button
-        onPress={() => navigation.navigate('Quiz')}
-        title='Start a Quiz'
+        onPress={() => navigation.navigate("Quiz")}
+        title="Start a Quiz"
       />
     </View>
   );
@@ -25,8 +25,8 @@ const HomeScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 30
-  }
+    fontSize: 30,
+  },
 });
 
 export default HomeScreen;
