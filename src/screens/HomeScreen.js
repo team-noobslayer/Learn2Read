@@ -2,27 +2,11 @@ import React, { useEffect } from "react";
 import { Button } from "react-native";
 import { View, StyleSheet } from "react-native";
 import { Text } from "react-native-elements";
-
-import { readDbPopulated, saveDbPopulated } from "../api/async.js";
-import { createTables, dropTables, writeQuestionsFromJson } from "../api/db.js";
-
-const questionsUri =
-  "https://raw.githubusercontent.com/team-noobslayer/Learn2Read/master/assets/db/questions.json";
-
-const loadDbIfFirstBoot = async (json_uri) => {
-  await saveDbPopulated(false);
-  dropTables();
-  const dbPopulated = await readDbPopulated();
-  if (dbPopulated) return;
-  createTables();
-  writeQuestionsFromJson(json_uri);
-  await saveDbPopulated(true);
-};
+import useDatabase from "../hooks/useDatabase";
 
 const HomeScreen = ({ navigation }) => {
-  useEffect(() => {
-    loadDbIfFirstBoot(questionsUri);
-  }, []);
+  const dbLoaded = useDatabase();
+  if (!dbLoaded) return null;
 
   return (
     <View>
