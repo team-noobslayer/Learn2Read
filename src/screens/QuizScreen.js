@@ -75,6 +75,28 @@ const QuizScreen = ({ navigation }) => {
   const addResponse = (response) => {
     dispatch({ type: "add_response", payload: response });
   };
+
+  const submitQuestion = () => {
+    if (question) {
+      if (selectionIndex === -1) return;
+      const correct =
+        answers[selectionIndex] === question.correctAnswer ? 1 : 0;
+      addResponse({
+        questionId: question.id,
+        response: answers[selectionIndex],
+        correct,
+      });
+    }
+    setQuestionIndex((questionIndex + 1) % 5);
+    setQuestion(state.questions[questionIndex]);
+    setSelectionIndex(-1);
+  };
+
+  const exit = () => {
+    if (responses) submitQuiz(responses);
+    navigation.pop();
+  };
+
   useEffect(() => fetchQuiz(), []);
 
   return (
@@ -92,24 +114,17 @@ const QuizScreen = ({ navigation }) => {
         <Button
           buttonStyle={styles.submitButtonStyle}
           title={question ? "Submit" : "Start"}
-          onPress={() => {
-            if (selectionIndex === -1) return;
-            if (answers[selectionIndex] === question.correctAnswer) {
-              alert("correct");
-            }
-            setQuestionIndex((questionIndex + 1) % 5);
-            setQuestion(state.questions[questionIndex]);
-            setSelectionIndex(-1);
-          }}
+          onPress={submitQuestion}
         />
         <Button
           buttonStyle={styles.exitButtonStyle}
           title="Exit"
-          onPress={() => {
-            navigation.pop();
-          }}
+          onPress={exit}
         />
       </View>
+      <Text style={styles.scoreStyle}>
+        {numAnswered !== 0 ? `${numCorrect}/${numAnswered}` : null}
+      </Text>
     </View>
   );
 };
@@ -144,6 +159,10 @@ const styles = StyleSheet.create({
     width: 150,
     margin: 5,
     backgroundColor: "firebrick",
+  },
+  scoreStyle: {
+    fontSize: 20,
+    marginTop: 25,
   },
 });
 
