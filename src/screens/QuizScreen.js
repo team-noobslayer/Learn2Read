@@ -26,19 +26,38 @@ const quizReducer = (state, action) => {
       return { ...state, selectionIndex: action.payload };
     case "set_question_index":
       return { ...state, questionIndex: action.payload };
+    case "add_response":
+      return {
+        ...state,
+        responses: state.responses
+          ? [...state.responses, action.payload]
+          : [action.payload],
+        numAnswered: state.numAnswered + 1,
+        numCorrect: state.numCorrect + action.payload.correct,
+      };
     default:
       return state;
   }
 };
 
 const QuizScreen = ({ navigation }) => {
-  const { state, fetchQuiz } = useContext(QuizContext);
+  const { state, fetchQuiz, submitQuiz } = useContext(QuizContext);
   const [
-    { question, selectionIndex, questionIndex, answers },
+    {
+      question,
+      selectionIndex,
+      questionIndex,
+      answers,
+      numAnswered,
+      numCorrect,
+      responses,
+    },
     dispatch,
   ] = useReducer(quizReducer, {
     selectionIndex: -1,
     questionIndex: 0,
+    numAnswered: 0,
+    numCorrect: 0,
   });
 
   const setQuestion = (question) => {
@@ -53,6 +72,9 @@ const QuizScreen = ({ navigation }) => {
     dispatch({ type: "set_selection_index", payload: index });
   };
 
+  const addResponse = (response) => {
+    dispatch({ type: "add_response", payload: response });
+  };
   useEffect(() => fetchQuiz(), []);
 
   return (
