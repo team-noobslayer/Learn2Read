@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Platform } from "react-native";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 const ProfileScreen = () => {
   return (
@@ -10,7 +11,11 @@ const ProfileScreen = () => {
 };
 
 ProfileScreen.navigationOptions ={
-  headerTitle: 'Profile'
+  headerTitle: 'Profile',
+  headerStyle: {
+    backgroundColor: Platform.OS === 'android' ? Colors.primary : 'white'
+  },
+  headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary
 };
 
 const styles = StyleSheet.create({});

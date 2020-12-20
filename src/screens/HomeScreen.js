@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Button, TouchableOpacity } from "react-native";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet,  } from "react-native";
 import Card from '../components/Card';
 //import { Text } from "react-native-elements";
 
@@ -48,10 +48,14 @@ const HomeScreen = ({ navigation }) => {
   );
 };
 
-/*HomeScreen.navigationOptions = (navigationData) =>{
-  console.log(navigationData)
+HomeScreen.navigationOptions ={
+  headerTitle: 'Learn2Read',
+  headerStyle: {
+    backgroundColor: Platform.OS === 'android' ? Colors.primary : 'white'
+  },
+  headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary
 };
-*/
+
 
 const styles = StyleSheet.create({
   screen: {

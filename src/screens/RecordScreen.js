@@ -10,7 +10,11 @@ const RecordScreen = () => {
 };
 
 RecordScreen.navigationOptions ={
-  headerTitle: 'Records'
+  headerTitle: 'Records',
+  headerStyle: {
+    backgroundColor: Platform.OS === 'android' ? Colors.primary : 'white'
+  },
+  headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary
 };
 
 const styles = StyleSheet.create({});
