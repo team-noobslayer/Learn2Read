@@ -10,20 +10,19 @@ const QuizScreen = ({ navigation }) => {
   const [question, setQuestion] = useState(null);
 
   useEffect(() => {
-    fetchQuiz();
-    setQuestion(state.questions[questionIndex]);
+    fetchQuiz(10, () => {
+      setQuestion(state.questions[questionIndex]);
+    });
   }, []);
-
-  if (!question) return null;
 
   return (
     <View style={styles.containerStyle}>
       <Text h4 style={styles.questionStyle}>
-        {question.question}
+        {question ? question.question : null}
       </Text>
       <ButtonGroup
         selectedIndex={selectionIndex}
-        buttons={[...question.answers, question.correctAnswer]}
+        buttons={question ? [...question.answers, question.correctAnswer] : []}
         onPress={(index) => setSelectionIndex(index)}
         containerStyle={styles.selectionButtonContainerStyle}
       />
