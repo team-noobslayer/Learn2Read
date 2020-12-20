@@ -1,9 +1,10 @@
-import React from "react";
-import { Button, TouchableOpacity } from "react-native";
-import { Text, View, StyleSheet, Platform } from "react-native";
-import Card from "../components/Card";
-import Colors from "../constants/colors";
+import React, { useEffect } from "react";
+import { Button } from "react-native";
+import { View, StyleSheet, Platform, TouchableOpacity } from "react-native";
+import { Text } from "react-native-elements";
 import useDatabase from "../hooks/useDatabase";
+import Colors from "../constants/colors";
+import Card from "../components/Card";
 
 const HomeScreen = ({ navigation }) => {
   const dbLoaded = useDatabase();
@@ -28,16 +29,9 @@ const HomeScreen = ({ navigation }) => {
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => navigation.navigate("Quiz")}
-        style={styles.button}
-      >
-        <Text>Start a Quiz</Text>
-      </TouchableOpacity>
-      {/* <TouchableOpacity
-        onPress={() => navigation.navigate("Debug")}
-        style={styles.button}
-      >
-        <Text>Debug</Text>
-      </TouchableOpacity> */}
+        title="Start a Quiz"
+      />
+      <Button onPress={() => navigation.navigate("Debug")} title="Debug" />
     </View>
   );
 };

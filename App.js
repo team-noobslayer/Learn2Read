@@ -6,7 +6,7 @@ import {
 } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 // import {createTabNavigator} from 'react-navigation-tabs';
-
+import Colors from "./src/constants/colors";
 import HomeScreen from "./src/screens/HomeScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import RecordScreen from "./src/screens/RecordScreen";
