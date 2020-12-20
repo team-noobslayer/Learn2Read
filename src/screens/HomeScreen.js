@@ -29,9 +29,16 @@ const HomeScreen = ({ navigation }) => {
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => navigation.navigate("Quiz")}
-        title="Start a Quiz"
-      />
-      <Button onPress={() => navigation.navigate("Debug")} title="Debug" />
+        style={styles.button}
+      >
+        <Text>Start a Quiz</Text>
+      </TouchableOpacity>
+      {/* <TouchableOpacity
+        onPress={() => navigation.navigate("Debug")}
+        style={styles.button}
+      >
+        <Text>Debug</Text>
+      </TouchableOpacity> */}
     </View>
   );
 };
