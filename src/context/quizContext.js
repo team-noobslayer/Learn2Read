@@ -1,7 +1,7 @@
 // Quiz context
-// state = { submitted (Bool), questions (Array<question>), responses (Array<response>) }
+// state = { questions (Array<question>), responses (Array<response>) }
 // question = { id (Number), question (String), answers (Array<String>), correctAnswer (String) }
-// response = { questionId (Number), response (String), correct (Number) === 0 || 1 }
+// response = { questionId (Number), response (String), correct (Number) === 0 || 1, timestamp (Date) }
 
 import createDataContext from "./createDataContext";
 import { fetchQuestions, writeResponse } from "../api/db.js";
@@ -45,6 +45,5 @@ const submitQuiz = (dispatch) => {
 
 export const { Context, Provider } = createDataContext(
   quizReducer,
-  { fetchQuiz, submitQuiz },
-  { submitted: false, questions: [], responses: [] }
+  { questions: [], responses: [] }
 );
