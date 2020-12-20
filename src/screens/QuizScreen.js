@@ -41,7 +41,7 @@ const quizReducer = (state, action) => {
 };
 
 const QuizScreen = ({ navigation }) => {
-  const { state, fetchQuiz, submitQuiz } = useContext(QuizContext);
+  const { state, getQuiz, submitQuiz } = useContext(QuizContext);
   const [
     {
       question,
@@ -97,7 +97,10 @@ const QuizScreen = ({ navigation }) => {
     navigation.pop();
   };
 
-  useEffect(() => fetchQuiz(), []);
+  useEffect(
+    () => getQuiz(10, (questions) => setQuestion(questions[questionIndex])),
+    []
+  );
 
   return (
     <View style={styles.containerStyle}>
@@ -129,7 +132,7 @@ const QuizScreen = ({ navigation }) => {
   );
 };
 
-QuizScreen.navigationOptions = ({ navigation }) => {
+QuizScreen.navigationOptions = () => {
   return { headerBackImage: () => null, headerTitleAlign: "center" };
 };
 
