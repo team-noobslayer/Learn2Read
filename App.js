@@ -1,20 +1,15 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import {
-  createAppContainer,
-  // createSwitchNavigator
-} from "react-navigation";
+import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-// import {createTabNavigator} from 'react-navigation-tabs';
-import Colors from "./src/constants/colors";
+
 import HomeScreen from "./src/screens/HomeScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import RecordScreen from "./src/screens/RecordScreen";
 import QuizScreen from "./src/screens/QuizScreen";
-import Colors from "./src/constants/colors";
 import DebugScreen from "./src/screens/DebugScreen";
-import Header from "./src/components/Header";
+
 import { Provider as QuizProvider } from "./src/context/quizContext";
+import Colors from "./src/constants/colors";
 
 const navigator = createStackNavigator(
   {
