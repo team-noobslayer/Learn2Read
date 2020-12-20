@@ -1,7 +1,7 @@
 // Quiz context
 // state = { submitted (Bool), questions (Array<question>), responses (Array<response>) }
 // question = { id (Number), question (String), answers (Array<String>), correctAnswer (String) }
-// response = { question_id (Number), response (String), correct (Number) === 0 || 1 }
+// response = { questionId (Number), response (String), correct (Number) === 0 || 1 }
 
 import createDataContext from "./createDataContext";
 import { fetchQuestions, writeResponse } from "../api/db.js";
