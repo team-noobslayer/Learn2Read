@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { Button } from "react-native";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Platform, TouchableOpacity } from "react-native";
 import { Text } from "react-native-elements";
 import useDatabase from "../hooks/useDatabase";
+import Colors from '../constants/colors';
+import Card from '../components/Card';
 
 const HomeScreen = ({ navigation }) => {
   const dbLoaded = useDatabase();
