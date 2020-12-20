@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import { Button } from "react-native";
-import { View, StyleSheet } from "react-native";
-import { Text } from "react-native-elements";
+import { Button, TouchableOpacity } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
+import Card from '../components/Card';
+//import { Text } from "react-native-elements";
 
 import { readDbPopulated, saveDbPopulated } from "../api/async.js";
 import { createTables, writeQuestionsFromJson } from "../api/db.js";
@@ -23,28 +24,50 @@ const HomeScreen = ({ navigation }) => {
   }, []);
 
   return (
-    <View>
-      <Text style={styles.text}>Home</Text>
-      <Button
+    <View style={styles.screen}>
+      
+      <Card style={styles.titleContainer}>
+        <Text>Welcome to Learn2Read!</Text>
+      </Card>
+      <TouchableOpacity
         onPress={() => navigation.navigate("Profile")}
-        title="Select Current Profile"
-      />
-      <Button
+        style={styles.button}>
+        <Text>Select Current Profile</Text>
+       </TouchableOpacity>
+      <TouchableOpacity
         onPress={() => navigation.navigate("Record")}
-        title="See Current Records"
-      />
-      <Button
+        style={styles.button}>
+        <Text>See Current Records</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
         onPress={() => navigation.navigate("Quiz")}
-        title="Start a Quiz"
-      />
+        style={styles.button}>
+        <Text>Start a Quiz</Text>
+     </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 30,
+  screen: {
+    flex: 1,
+    padding: 10,
   },
+  text: {
+    fontSize: 100,
+  },
+  button: {
+    alignItems: "center",
+    backgroundColor: "#DDDDDD",
+    padding: 10,
+    margin: 20
+  },
+  titleContainer: {
+    width: 500,
+    maxWidth: '90%',
+   alignItems: 'center',
+   justifyContent: 'center'
+  }
 });
 
 export default HomeScreen;

@@ -1,4 +1,5 @@
 import React from "react";
+import { StyleSheet, View } from 'react-native';
 import {
   createAppContainer,
   // createSwitchNavigator
@@ -10,7 +11,9 @@ import HomeScreen from "./src/screens/HomeScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import RecordScreen from "./src/screens/RecordScreen";
 import QuizScreen from "./src/screens/QuizScreen";
+import Colors from './src/constants/colors';
 
+import Header from './src/components/Header';
 import { Provider as QuizProvider } from "./src/context/quizContext";
 
 const navigator = createStackNavigator(
@@ -18,17 +21,22 @@ const navigator = createStackNavigator(
     Home: HomeScreen,
     Record: RecordScreen,
     Profile: ProfileScreen,
-    Quiz: QuizScreen,
+    Quiz: QuizScreen
   },
   {
     initialRouteName: "Home",
     defaultNavigationOptions: {
-      title: "App",
+      headerTitle: "Learn2Read",
+      headerStyle: {
+        backgroundColor: Colors.primary,
+      },
+      headerTintColor: 'white'     
     },
   }
 );
 
 const App = createAppContainer(navigator);
+
 
 export default () => {
   return (
