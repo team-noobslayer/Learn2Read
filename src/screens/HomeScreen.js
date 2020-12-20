@@ -5,12 +5,14 @@ import Card from '../components/Card';
 //import { Text } from "react-native-elements";
 import Colors from '../constants/colors';
 import { readDbPopulated, saveDbPopulated } from "../api/async.js";
-import { createTables, writeQuestionsFromJson } from "../api/db.js";
+import { createTables, dropTables, writeQuestionsFromJson } from "../api/db.js";
 
 const questionsUri =
   "https://raw.githubusercontent.com/team-noobslayer/Learn2Read/master/assets/db/questions.json";
 
 const loadDbIfFirstBoot = async (json_uri) => {
+  await saveDbPopulated(false);
+  dropTables();
   const dbPopulated = await readDbPopulated();
   if (dbPopulated) return;
   createTables();
@@ -41,9 +43,15 @@ const HomeScreen = ({ navigation }) => {
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => navigation.navigate("Quiz")}
+<<<<<<< HEAD
         style={styles.button}>
         <Text>Start a Quiz</Text>
      </TouchableOpacity>
+=======
+        title="Start a Quiz"
+      />
+      <Button onPress={() => navigation.navigate("Debug")} title="Debug" />
+>>>>>>> c0db9f2... Add debug screen
     </View>
   );
 };
