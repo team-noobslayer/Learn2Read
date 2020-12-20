@@ -4,10 +4,11 @@ import { View, Text, FlatList, StyleSheet } from "react-native";
 import { Context as QuizContext } from "../context/quizContext";
 
 const DebugScreen = () => {
-  const { state, fetchQuiz } = useContext(QuizContext);
+  const { state, getQuiz, getResponses } = useContext(QuizContext);
 
   useEffect(() => {
-    fetchQuiz();
+    getQuiz();
+    getResponses();
   }, []);
 
   return (
@@ -24,6 +25,18 @@ const DebugScreen = () => {
           );
         }}
         keyExtractor={(item) => item.id.toString()}
+      />
+      <FlatList
+        data={state.responses}
+        renderItem={({ item }) => {
+          return (
+            <View>
+              <Text>Question ID: {item.questionId}</Text>
+              <Text>Response: {item.response}</Text>
+            </View>
+          );
+        }}
+        keyExtractor={(item) => item.timestamp.toString()}
       />
     </View>
   );
