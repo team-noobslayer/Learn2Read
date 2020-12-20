@@ -87,7 +87,7 @@ const QuizScreen = ({ navigation }) => {
         correct,
       });
     }
-    setQuestionIndex((questionIndex + 1) % 5);
+    setQuestionIndex((questionIndex + 1) % state.questions.length);
     setQuestion(state.questions[questionIndex]);
     setSelectionIndex(-1);
   };
