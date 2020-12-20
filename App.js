@@ -10,6 +10,7 @@ import HomeScreen from "./src/screens/HomeScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import RecordScreen from "./src/screens/RecordScreen";
 import QuizScreen from "./src/screens/QuizScreen";
+import DebugScreen from "./src/screens/DebugScreen";
 
 import { Provider as QuizProvider } from "./src/context/quizContext";
 
@@ -19,6 +20,7 @@ const navigator = createStackNavigator(
     Record: RecordScreen,
     Profile: ProfileScreen,
     Quiz: QuizScreen,
+    Debug: DebugScreen,
   },
   {
     initialRouteName: "Home",
