@@ -21,7 +21,8 @@ npm start
 ```
 
 Running these commands will install and open up expo, which is a set of tools used for React Native development. When expo opens up in the web browser, if you have
-an Android or iOS emulator running, click on their respective run buttons. Otherwise, feel free to download expo on your physical device and scan the QR code on the 
+an Android or iOS emulator running, click on their respective run buttons. Otherwise, feel free to download the expo app on your physical device's app store
+and scan the QR code on the 
 lower right-hand corner. If there is an issue with the LAN connection, switch over to the Tunnel connection. If there are further connection issues, or code 500 errors
 rendering on your screen, you may have to run the terminal commands again.
 
