@@ -32,7 +32,12 @@ const HomeScreen = ({ navigation }) => {
       >
         <Text>Start a Quiz</Text>
       </TouchableOpacity>
-      <Button onPress={() => navigation.navigate("Debug")} title="Debug" />
+      {/* <TouchableOpacity
+        onPress={() => navigation.navigate("Debug")}
+        style={styles.button}
+      >
+        <Text>Debug</Text>
+      </TouchableOpacity> */}
     </View>
   );
 };
