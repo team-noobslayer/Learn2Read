@@ -11,7 +11,7 @@ Our goal is to provide teachers a resource for teaching students how to read and
 # Repository Information
 
 This repository contains both the backend and frontend code for the Learn2Read mobile app. The app was created using React Native, which allows the application
-to run on Android and iOS applications natively from a single JavsScript codebase. 
+to run on Android and iOS applications natively from a single JavaScript codebase. 
 
 To run the app, open the codebase in your preferred text editor and run the following code in the terminal:
 ```
