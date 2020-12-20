@@ -19,6 +19,7 @@ const DebugScreen = () => {
           return (
             <View>
               <Text>Question: {item.question}</Text>
+              <Text>Incorrect Answers: {item.answers}</Text>
               <Text>Answer: {item.correctAnswer}</Text>
             </View>
           );

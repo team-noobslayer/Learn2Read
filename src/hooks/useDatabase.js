@@ -19,7 +19,7 @@ export default (json_uri) => {
   };
 
   useEffect(() => {
-    uri = json_uri
+    const uri = json_uri
       ? json_uri
       : "https://raw.githubusercontent.com/team-noobslayer/Learn2Read/master/assets/db/questions.json";
     loadQuestionsIfFirstBoot(uri);
