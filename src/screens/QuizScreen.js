@@ -92,6 +92,10 @@ const QuizScreen = ({ navigation }) => {
   );
 };
 
+QuizScreen.navigationOptions = ({ navigation }) => {
+  return { headerBackImage: () => null, headerTitleAlign: "center" };
+};
+
 const styles = StyleSheet.create({
   containerStyle: {
     flex: 1,
