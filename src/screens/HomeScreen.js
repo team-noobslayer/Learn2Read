@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Button, TouchableOpacity } from "react-native";
-import { Text, View, StyleSheet,  } from "react-native";
+import { Text, View, StyleSheet, Platform } from "react-native";
 import Card from '../components/Card';
 //import { Text } from "react-native-elements";
-
+import Colors from '../constants/colors';
 import { readDbPopulated, saveDbPopulated } from "../api/async.js";
 import { createTables, writeQuestionsFromJson } from "../api/db.js";
 
