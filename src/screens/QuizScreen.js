@@ -29,7 +29,7 @@ const QuizScreen = ({ navigation }) => {
       <View style={styles.logicButtonContainerStyle}>
         <Button
           buttonStyle={styles.submitButtonStyle}
-          title="Submit"
+          title={question ? "Submit" : "Start"}
           onPress={() => {
             setQuestionIndex((questionIndex + 1) % 5);
             setQuestion(state.questions[questionIndex]);
