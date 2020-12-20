@@ -11,7 +11,7 @@ const quizReducer = (state, action) => {
     case "fetch_quiz":
       return { ...state, questions: action.payload };
     case "submit_quiz":
-      return { ...state, responses: [...responses, action.payload] };
+      return { ...state, responses: [...state.responses, action.payload] };
     default:
       return state;
   }
@@ -21,7 +21,7 @@ const fetchQuiz = (dispatch) => {
   return (numQuestions = 10, callback = null) => {
     fetchQuestions(numQuestions, (questions) => {
       console.log(questions);
-    dispatch({ type: "fetch_quiz", payload: questions });
+      dispatch({ type: "fetch_quiz", payload: questions });
     });
     if (callback) {
       callback();
@@ -34,7 +34,7 @@ const submitQuiz = (dispatch) => {
     // payload = responses array
     for (let response of payload) {
       writeResponse(response, () => {
-    dispatch({ type: "submit_quiz", payload });
+        dispatch({ type: "submit_quiz", payload });
       });
     }
     if (callback) {
