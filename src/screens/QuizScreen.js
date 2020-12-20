@@ -58,6 +58,7 @@ const QuizScreen = ({ navigation }) => {
     questionIndex: 0,
     numAnswered: 0,
     numCorrect: 0,
+    answers: [],
   });
 
   const setQuestion = (question) => {
