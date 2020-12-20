@@ -3,6 +3,13 @@ import { View, StyleSheet } from "react-native";
 import { Text, Button, ButtonGroup } from "react-native-elements";
 import { Context as QuizContext } from "../context/quizContext";
 
+const arrayShuffle = (a) => {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+};
 const QuizScreen = ({ navigation }) => {
   const { state, fetchQuiz } = useContext(QuizContext);
   const [selectionIndex, setSelectionIndex] = useState(-1);
