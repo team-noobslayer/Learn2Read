@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useReducer, useContext, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import { Text, Button, ButtonGroup } from "react-native-elements";
 import { Context as QuizContext } from "../context/quizContext";
@@ -10,17 +10,50 @@ const arrayShuffle = (a) => {
   }
   return a;
 };
+
+const quizReducer = (state, action) => {
+  switch (action.type) {
+    case "set_question":
+      return {
+        ...state,
+        question: action.payload,
+        answers: arrayShuffle([
+          ...action.payload.answers,
+          action.payload.correctAnswer,
+        ]),
+      };
+    case "set_selection_index":
+      return { ...state, selectionIndex: action.payload };
+    case "set_question_index":
+      return { ...state, questionIndex: action.payload };
+    default:
+      return state;
+  }
+};
+
 const QuizScreen = ({ navigation }) => {
   const { state, fetchQuiz } = useContext(QuizContext);
-  const [selectionIndex, setSelectionIndex] = useState(-1);
-  const [questionIndex, setQuestionIndex] = useState(0);
-  const [question, setQuestion] = useState(null);
+  const [
+    { question, selectionIndex, questionIndex, answers },
+    dispatch,
+  ] = useReducer(quizReducer, {
+    selectionIndex: -1,
+    questionIndex: 0,
+  });
 
-  useEffect(() => {
-    fetchQuiz(10, () => {
-      setQuestion(state.questions[questionIndex]);
-    });
-  }, []);
+  const setQuestion = (question) => {
+    dispatch({ type: "set_question", payload: question });
+  };
+
+  const setQuestionIndex = (index) => {
+    dispatch({ type: "set_question_index", payload: index });
+  };
+
+  const setSelectionIndex = (index) => {
+    dispatch({ type: "set_selection_index", payload: index });
+  };
+
+  useEffect(() => fetchQuiz(), []);
 
   return (
     <View style={styles.containerStyle}>
@@ -29,7 +62,7 @@ const QuizScreen = ({ navigation }) => {
       </Text>
       <ButtonGroup
         selectedIndex={selectionIndex}
-        buttons={question ? [...question.answers, question.correctAnswer] : []}
+        buttons={question ? answers : []}
         onPress={(index) => setSelectionIndex(index)}
         containerStyle={styles.selectionButtonContainerStyle}
       />
@@ -38,6 +71,10 @@ const QuizScreen = ({ navigation }) => {
           buttonStyle={styles.submitButtonStyle}
           title={question ? "Submit" : "Start"}
           onPress={() => {
+            if (selectionIndex === -1) return;
+            if (answers[selectionIndex] === question.correctAnswer) {
+              alert("correct");
+            }
             setQuestionIndex((questionIndex + 1) % 5);
             setQuestion(state.questions[questionIndex]);
             setSelectionIndex(-1);
