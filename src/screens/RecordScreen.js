@@ -9,6 +9,10 @@ const RecordScreen = () => {
   );
 };
 
+RecordScreen.navigationOptions ={
+  headerTitle: 'Records'
+};
+
 const styles = StyleSheet.create({});
 
 export default RecordScreen;

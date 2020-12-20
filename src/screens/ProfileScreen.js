@@ -9,6 +9,10 @@ const ProfileScreen = () => {
   );
 };
 
+ProfileScreen.navigationOptions ={
+  headerTitle: 'Profile'
+};
+
 const styles = StyleSheet.create({});
 
 export default ProfileScreen;
