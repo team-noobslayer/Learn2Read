@@ -55,7 +55,7 @@ export const fetchResponses = (callback) => {
               questionId: response.QuestionID,
               response: response.Response,
               correct: response.Correct,
-              timestamp: Date(response.Timestamp),
+              timestamp: new Date(response.Timestamp),
             };
           })
         );
