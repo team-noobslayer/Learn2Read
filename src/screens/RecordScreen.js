@@ -24,7 +24,10 @@ const RecordScreen = () => {
         renderItem={({ item }) => {
           return (
             <Text>
-              {item.questionId} {item.response}
+              {item.questionId}
+              {item.response}
+              {item.correct ? "✔️" : "❌"}
+              {item.timestamp.toString()}
             </Text>
           );
         }}
