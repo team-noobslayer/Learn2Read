@@ -43,6 +43,27 @@ export const fetchQuestions = (numQuestions = 10, callback) => {
   });
 };
 
+export const fetchQuestionById = (id, callback) => {
+  db.transaction((tx) => {
+    tx.executeSql(
+      "SELECT * FROM Questions WHERE QuestionID=?",
+      [id],
+      (_, resultSet) =>
+        callback(
+          resultSet.rows._array.map((question) => {
+            return {
+              id: question.QuestionID,
+              question: question.Question,
+              answers: [question.Answer1, question.Answer2, question.Answer3],
+              correctAnswer: question.CorrectAnswer,
+            };
+          })[0]
+        ),
+      (err) => console.error("fetchQuestionById error\n", err)
+    );
+  });
+};
+
 export const fetchResponses = (callback) => {
   db.transaction((tx) => {
     tx.executeSql(
@@ -55,7 +76,7 @@ export const fetchResponses = (callback) => {
               questionId: response.QuestionID,
               response: response.Response,
               correct: response.Correct,
-              timestamp: Date(response.Timestamp),
+              timestamp: new Date(response.Timestamp),
             };
           })
         );
@@ -168,6 +189,7 @@ export const writeQuestionsFromJson = async (uri) => {
     const response = await axios.get(uri);
     const questions = response.data;
     for (let question of questions) {
+      console.log(question);
       writeQuestion(question);
     }
   } catch (err) {

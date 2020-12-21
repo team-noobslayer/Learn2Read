@@ -98,10 +98,7 @@ const QuizScreen = ({ navigation }) => {
     navigation.pop();
   };
 
-  useEffect(
-    () => getQuiz(10, (questions) => setQuestion(questions[questionIndex])),
-    []
-  );
+  useEffect(() => getQuiz(), []);
 
   return (
     <View style={styles.containerStyle}>

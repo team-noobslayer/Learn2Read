@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
 
 import { readDbPopulated, saveDbPopulated } from "../api/async.js";
-import { createTables, dropTables, writeQuestionsFromJson } from "../api/db.js";
+import {
+  createTables,
+  dropTables,
+  writeQuestionsFromJson,
+  fetchQuestionById,
+} from "../api/db.js";
 
 export default (json_uri) => {
   const [dbLoaded, setDbLoaded] = useState(false);
@@ -18,6 +23,10 @@ export default (json_uri) => {
     setDbLoaded(true);
   };
 
+  const getQuestionById = (id, callback) => {
+    fetchQuestionById(id, callback);
+  };
+
   useEffect(() => {
     const uri = json_uri
       ? json_uri
@@ -25,5 +34,5 @@ export default (json_uri) => {
     loadQuestionsIfFirstBoot(uri);
   }, []);
 
-  return dbLoaded;
+  return [dbLoaded, getQuestionById];
 };
