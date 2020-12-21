@@ -14,7 +14,16 @@ const RecordScreen = () => {
   const [_, getQuestionById] = useDatabase();
 
   useEffect(() => {
-    getResponses((responses) => setResponses(responses));
+    getResponses((responses) => {
+      const r = responses.map((response) => {
+        getQuestionById(
+          response.questionId,
+          (question) => (response.question = question.question)
+        );
+        return response;
+      });
+      setResponses(r);
+    });
   }, []);
 
   return (
@@ -25,17 +34,11 @@ const RecordScreen = () => {
       <FlatList
         data={responses}
         renderItem={({ item }) => {
-          getQuestionById(
-            item.questionId,
-            (question) => (item.question = question)
-          );
           return (
             <View>
               <ListItem bottomDivider>
                 <ListItem.Content>
-                  <ListItem.Title>
-                    Question ID: {item.questionId}
-                  </ListItem.Title>
+                  <ListItem.Title>{item.question}</ListItem.Title>
                   <ListItem.Subtitle>
                     {item.response} {item.correct ? "✔️" : "❌"}
                   </ListItem.Subtitle>
