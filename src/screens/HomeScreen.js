@@ -15,12 +15,12 @@ const HomeScreen = ({ navigation }) => {
       <Card style={styles.titleContainer}>
         <Text>Welcome to Learn2Read!</Text>
       </Card>
-      <TouchableOpacity
+      {/* <TouchableOpacity
         onPress={() => navigation.navigate("Profile")}
         style={styles.button}
       >
         <Text>Select Current Profile</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <TouchableOpacity
         onPress={() => navigation.navigate("Record")}
         style={styles.button}
