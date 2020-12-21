@@ -29,7 +29,14 @@ const RecordScreen = () => {
   return (
     <>
       <Card style={styles.titleContainer}>
-        <Text>Records</Text>
+        <Text style={styles.titleStyle}>Records</Text>
+        <Text style={styles.subtitleStyle}>
+          {responses
+            ? `${responses.filter((response) => response.correct).length} / ${
+                responses.length
+              } correct`
+            : null}
+        </Text>
       </Card>
       <FlatList
         data={responses}
@@ -67,6 +74,12 @@ const styles = StyleSheet.create({
     maxWidth: "90%",
     alignItems: "center",
     justifyContent: "center",
+  },
+  titleStyle: {
+    fontSize: 24,
+  },
+  subtitleStyle: {
+    fontSize: 16,
   },
 });
 
