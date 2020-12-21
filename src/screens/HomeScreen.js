@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { Button } from "react-native";
+import React from "react";
 import { View, StyleSheet, Platform, TouchableOpacity } from "react-native";
 import { Text } from "react-native-elements";
 import useDatabase from "../hooks/useDatabase";
@@ -13,7 +12,7 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.screen}>
       <Card style={styles.titleContainer}>
-        <Text>Welcome to Learn2Read!</Text>
+        <Text style={styles.titleStyle}>Welcome to Learn2Read!</Text>
       </Card>
       {/* <TouchableOpacity
         onPress={() => navigation.navigate("Profile")}
@@ -70,6 +69,9 @@ const styles = StyleSheet.create({
     maxWidth: "90%",
     alignItems: "center",
     justifyContent: "center",
+  },
+  titleStyle: {
+    fontSize: 24,
   },
 });
 
