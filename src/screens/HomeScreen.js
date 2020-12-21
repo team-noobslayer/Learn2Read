@@ -7,7 +7,7 @@ import Colors from "../constants/colors";
 import Card from "../components/Card";
 
 const HomeScreen = ({ navigation }) => {
-  const dbLoaded = useDatabase();
+  const [dbLoaded] = useDatabase();
   if (!dbLoaded) return null;
 
   return (
