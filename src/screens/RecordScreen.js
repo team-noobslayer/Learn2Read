@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { View, Text, StyleSheet, Platform, FlatList } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
 import { ListItem } from "react-native-elements";
 
 import useDatabase from "../hooks/useDatabase";
@@ -47,7 +48,13 @@ const RecordScreen = () => {
                 <ListItem.Content>
                   <ListItem.Title>{item.question}</ListItem.Title>
                   <ListItem.Subtitle>
-                    {item.response} {item.correct ? "✔️" : "❌"}
+                    <MaterialIcons
+                      name={item.correct ? "done" : "close"}
+                      style={{
+                        color: item.correct ? "green" : "red",
+                      }}
+                    />
+                    {item.response}
                   </ListItem.Subtitle>
                 </ListItem.Content>
               </ListItem>
